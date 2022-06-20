@@ -14,7 +14,7 @@
 
 		<div id="header" class="clearfix">
 			<h1>
-				<a href="main">MySite</a>
+				<a href="/mysite4/main">MySite</a>
 			</h1>
 
 			<!-- 
@@ -25,8 +25,8 @@
 			</ul>
 			-->	
 			<ul>
-				<li><a href="loginForm" class="btn_s">로그인</a></li>
-				<li><a href="joinForm" class="btn_s">회원가입</a></li>
+				<li><a href="/mysite4/user/loginForm" class="btn_s">로그인</a></li>
+				<li><a href="/mysite4/user/joinForm" class="btn_s">회원가입</a></li>
 			</ul>
 			
 		</div>
@@ -37,7 +37,7 @@
 				<li><a href="">입사지원서</a></li>
 				<li><a href="">게시판</a></li>
 				<li><a href="">갤러리</a></li>
-				<li><a href="addList">방명록</a></li>
+				<li><a href="/mysite4/guestbook/addList">방명록</a></li>
 			</ul>
 		</div>
 		<!-- //nav -->
@@ -70,25 +70,25 @@
 	
 				<div id="user">
 					<div id="joinForm">
-						<form action="" method="">
+						<form action="join" method="get">
 	
 							<!-- 아이디 -->
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
-								<input type="text" id="input-uid" name="" value="" placeholder="아이디를 입력하세요">
+								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
 								<button type="button" id="">중복체크</button>
 							</div>
 	
 							<!-- 비밀번호 -->
 							<div class="form-group">
 								<label class="form-text" for="input-pass">패스워드</label> 
-								<input type="text" id="input-pass" name="" value="" placeholder="비밀번호를 입력하세요"	>
+								<input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요"	>
 							</div>
 	
 							<!-- 이메일 -->
 							<div class="form-group">
 								<label class="form-text" for="input-name">이름</label> 
-								<input type="text" id="input-name" name="" value="" placeholder="이름을 입력하세요">
+								<input type="text" id="input-name" name="name" value="" placeholder="이름을 입력하세요">
 							</div>
 	
 							<!-- //나이 -->
@@ -96,10 +96,10 @@
 								<span class="form-text">성별</span> 
 								
 								<label for="rdo-male">남</label> 
-								<input type="radio" id="rdo-male" name="" value="" > 
+								<input type="radio" id="rdo-male" name="gender" value="male" > 
 								
 								<label for="rdo-female">여</label> 
-								<input type="radio" id="rdo-female" name="" value="" > 
+								<input type="radio" id="rdo-female" name="gender" value="female" > 
 	
 							</div>
 	

@@ -4,9 +4,17 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="GuestbookVo" type="com.javaex.vo.GuestbookVo" />
+		<typeAlias alias="UserVo" type="com.javaex.vo.UserVo" />
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mybatis/mappers/guestbook.xml" />
-	</mappers>
+		<mapper resource="mybatis/mappers/user.xml" />
+	</mappers>		
+
 </configuration>
+
+
+
+
+

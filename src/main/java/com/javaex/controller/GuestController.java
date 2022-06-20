@@ -23,7 +23,7 @@ public class GuestController {
 	// 메소드일반
 
 	// 게시판폼
-	@RequestMapping(value = "/addList", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/guestbook/addList", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addList(Model model) {
 		System.out.println("GuestController >> addList()");
 
@@ -37,7 +37,7 @@ public class GuestController {
 	}
 
 	// 등록
-	@RequestMapping(value = "/add", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/guestbook/add", method = { RequestMethod.GET, RequestMethod.POST })
 	public String add(@ModelAttribute GuestbookVo guestbookVo) {
 		System.out.println("GuestController>add()");
 
@@ -51,7 +51,7 @@ public class GuestController {
 	}
 
 	// 게시판 삭제품
-	@RequestMapping(value = "/deleteForm", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/guestbook/deleteForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String deleteForm() {
 		System.out.println("GuestController >> deleteForm()");
 
@@ -59,7 +59,7 @@ public class GuestController {
 	}
 
 	// 삭제
-	@RequestMapping(value = "/delete", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/guestbook/delete", method = { RequestMethod.GET, RequestMethod.POST })
 	public String delete(@RequestParam("no") int no, @RequestParam("password") String password) {
 		System.out.println("GuestController >> delete()");
 
