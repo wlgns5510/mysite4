@@ -14,6 +14,7 @@ import com.javaex.service.GuestService;
 import com.javaex.vo.GuestbookVo;
 
 @Controller
+@RequestMapping(value= "/guestbook")
 public class GuestController {
 	// 필드
 	@Autowired
@@ -23,7 +24,7 @@ public class GuestController {
 	// 메소드일반
 
 	// 게시판폼
-	@RequestMapping(value = "/guestbook/addList", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/addList", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addList(Model model) {
 		System.out.println("GuestController >> addList()");
 
@@ -37,7 +38,7 @@ public class GuestController {
 	}
 
 	// 등록
-	@RequestMapping(value = "/guestbook/add", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/add", method = { RequestMethod.GET, RequestMethod.POST })
 	public String add(@ModelAttribute GuestbookVo guestbookVo) {
 		System.out.println("GuestController>add()");
 
@@ -51,7 +52,7 @@ public class GuestController {
 	}
 
 	// 게시판 삭제품
-	@RequestMapping(value = "/guestbook/deleteForm", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/deleteForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String deleteForm() {
 		System.out.println("GuestController >> deleteForm()");
 
@@ -59,7 +60,7 @@ public class GuestController {
 	}
 
 	// 삭제
-	@RequestMapping(value = "/guestbook/delete", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "k/delete", method = { RequestMethod.GET, RequestMethod.POST })
 	public String delete(@RequestParam("no") int no, @RequestParam("password") String password) {
 		System.out.println("GuestController >> delete()");
 
@@ -71,6 +72,6 @@ public class GuestController {
 		// Dao로 처리하기(삭제)
 		guestService.GuestbookDelete(vo);
 
-		return "redirect:/addList";
+		return "redirect:addList";
 	}
 }
