@@ -13,7 +13,7 @@ public class BoardDao {
 
 	@Autowired
 	private SqlSession sqlSession; // 미리 여러개를 연결해놈
-	
+
 	// 리스트
 	public List<BoardVo> getBoardList() {
 		System.out.println("BoardDao>>getBoardList");
@@ -23,15 +23,17 @@ public class BoardDao {
 
 		return bList;
 	}
-		
+
+	// 등록
+	public int insert(BoardVo boardVo) {
+		System.out.println("BoardDao>>BoardInsert");
+
+		int count = sqlSession.insert("board.insert", boardVo);
+
+		return count;
+	}
+
 	/*
-	 * // 등록 public int BoardInsert(BoardVo boardVo) {
-	 * System.out.println("BoardDao>>BoardInsert");
-	 * 
-	 * int count = sqlSession.insert("phonebook.personInsert", personVo);
-	 * 
-	 * return count; }
-	 * 
 	 * // 수정 public int personUpdate(PersonVo personVo) {
 	 * System.out.println("PhoneDao>>personInsert");
 	 * 
@@ -52,8 +54,5 @@ public class BoardDao {
 	 * 
 	 * }
 	 */
-	
-
-	
 
 }

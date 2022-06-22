@@ -7,10 +7,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.javaex.service.BoardService;
+import com.javaex.service.UserService;
 import com.javaex.vo.BoardVo;
 import com.javaex.vo.UserVo;
 
@@ -63,14 +65,14 @@ public class BoardController {
 	
 	//게시판 등록
 	@RequestMapping(value = "/write", method = { RequestMethod.GET, RequestMethod.POST })
-		public String write(HttpSession session) {
+		public String write(@ModelAttribute BoardVo boardVo) {
 			System.out.println("BoardController >> write()");
+												
+			int count = boardService.insert(boardVo);
 			
-			UserVo authUser = (UserVo)session.getAttribute("authUser");
-			int no = authUser.getNo();
-			System.out.println(no);
+			System.out.println("BoardController: " + count);
 			
-			return "";
+			return "redirect:/board/list";
 		}
 	
 	

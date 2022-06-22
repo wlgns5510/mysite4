@@ -43,6 +43,8 @@ public class UserService {
 		
 		return userVo;
 	}
+	
+	//수정
 	public int modify(UserVo userVo) {
 		System.out.println("UserService.modify()");
 		

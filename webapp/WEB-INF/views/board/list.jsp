@@ -73,7 +73,7 @@
 										<td class="text-left"><a href="/mysite4/board/read&no=${BoardVo.no }">${BoardVo.title}</a></td>
 										<td>${BoardVo.name }</td>
 										<td>${BoardVo.hit }</td>
-										<td>${BoardVo.date }</td>
+										<td>${BoardVo.regDate }</td>
 										<td>
 											<c:if test="${authUser.no == BoardVo.userNo }">
 												<a href="/mysite4/board/delete&no=${BoardVo.no }">[삭제]</a>

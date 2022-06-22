@@ -8,20 +8,31 @@
 	<!-- 전체리스트 가져오기 -->
 	<select id="selectList" resultType="BoardVo">
 		<![CDATA[ 
-				
-				select br.no,
-				       br.title, 
-					   br.content, 
-					   br.hit, 
-					   to_char(br.reg_date, 'YYYY-MM-DD HH24:MM') reg_date, 
-					   us.name 
-				from board br, users us 
-				where br.user_no = us.no 
-				order by no desc
+			
+			select br.no,
+			       br.title, 
+				   br.content, 
+				   br.hit, 
+				   to_char(br.reg_date, 'YYYY-MM-DD HH:MI') regDate, 
+				   us.name,
+				   br.user_no userNo
+			from board br, users us 
+			where br.user_no = us.no 
+			order by no desc
 		]]>
 	</select>
 
-	
+	<!-- 게시판 저장 -->
+	<insert id="insert" parameterType="BoardVo">
+		<![CDATA[ 
+		
+			 insert into board(no,title,content,reg_date,user_no) 
+			 values(seq_board_no.nextval, #{title}, #{content}, sysdate, #{userNo})
+		
+		]]>
+	</insert>
+
+
 
 
 

@@ -6,35 +6,35 @@ public class BoardVo {
 	private String title;
 	private String content;
 	private int hit;
-	private String date;
+	private String regDate;
 	private String name;
 	private int userNo;
 	
 	public BoardVo() {}
 
-	public BoardVo(int no, String title, String name, String content, int hit, String date) {
+	public BoardVo(int no, String title, String name, String content, int hit, String regDate) {
 		this.no = no;
 		this.title = title;
 		this.content = content;
 		this.hit = hit;
-		this.date = date;
+		this.regDate = regDate;
 		this.name = name;
 	}
 
-	public BoardVo(int no, String title, String content, int hit, String date) {
+	public BoardVo(int no, String title, String content, int hit, String regDate) {
 		this.no = no;
 		this.title = title;
 		this.content = content;
 		this.hit = hit;
-		this.date = date;
+		this.regDate = regDate;
 	}
 
-	public BoardVo(int no, String title, String content, int hit, String date, int userNo) {
+	public BoardVo(int no, String title, String content, int hit, String regDate, int userNo) {
 		this.no = no;
 		this.title = title;
 		this.content = content;
 		this.hit = hit;
-		this.date = date;
+		this.regDate = regDate;
 		this.userNo = userNo;
 	}
 
@@ -77,12 +77,12 @@ public class BoardVo {
 		this.hit = hit;
 	}
 
-	public String getDate() {
-		return date;
+	public String getRegDate() {
+		return regDate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 	
 	public String getName() {
@@ -103,7 +103,7 @@ public class BoardVo {
 
 	@Override
 	public String toString() {
-		return "BoardVo [no=" + no + ", title=" + title + ", hit=" + hit + ", date=" + date + ", userNo=" + userNo
+		return "BoardVo [no=" + no + ", title=" + title + ", content=" + content + ", hit=" + hit + ", regDate=" + regDate + ", userNo=" + userNo
 				+ "]";
 	}
 	

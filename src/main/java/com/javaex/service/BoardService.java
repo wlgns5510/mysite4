@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.BoardDao;
+import com.javaex.dao.UserDao;
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.UserVo;
 
 @Service
 public class BoardService {
@@ -28,14 +30,18 @@ public class BoardService {
 		return bList;
 	}
 
-	/*
-	 * // 전화번호 등록 public int personInsert(PersonVo personVo) {
-	 * 
-	 * int count = phoneDao.personInsert(personVo);
-	 * 
-	 * return count; }
-	 * 
-	 * // 전화번호 삭제 public int personDelete(int no) {
+	
+    // 게시판 등록
+    public int insert(BoardVo boardVo) {
+  
+	    int count = boardDao.insert(boardVo);
+	  
+	    return count; 
+    }
+	  
+	 
+	 
+	 /* // 전화번호 삭제 public int personDelete(int no) {
 	 * 
 	 * int count = phoneDao.personDelete(no); return count; }
 	 * 
