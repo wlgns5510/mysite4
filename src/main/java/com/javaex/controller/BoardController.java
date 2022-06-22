@@ -45,35 +45,39 @@ public class BoardController {
 		return "board/list";
 	}
 
-	//게시판 등록폼
+	// 게시판 등록폼
 	@RequestMapping(value = "/writeForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String writeForm(HttpSession session) {
 		System.out.println("BoardController >> writeForm()");
-		
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		
-				if(authUser != null) {	//로그인o
-					session.setAttribute("authUser", authUser);
-					 return "board/writeForm";
-				}
-				else {	//로그인x
-					return "user/loginForm";		 
-				}
-		
-		
-	}
-	
-	//게시판 등록
-	@RequestMapping(value = "/write", method = { RequestMethod.GET, RequestMethod.POST })
-		public String write(@ModelAttribute BoardVo boardVo) {
-			System.out.println("BoardController >> write()");
-												
-			int count = boardService.insert(boardVo);
-			
-			System.out.println("BoardController: " + count);
-			
-			return "redirect:/board/list";
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		if (authUser != null) { // 로그인o
+			session.setAttribute("authUser", authUser);
+			return "board/writeForm";
+		} else { // 로그인x
+			return "user/loginForm";
 		}
-	
-	
+
+	}
+
+	// 게시판 등록
+	@RequestMapping(value = "/write", method = { RequestMethod.GET, RequestMethod.POST })
+	public String write(@ModelAttribute BoardVo boardVo) {
+		System.out.println("BoardController >> write()");
+
+		int count = boardService.insert(boardVo);
+
+		System.out.println("BoardController: " + count);
+
+		return "redirect:/board/list";
+	}
+
+	// 게시판 읽기
+	@RequestMapping(value = "/read", method = { RequestMethod.GET, RequestMethod.POST })
+	public String read(@ModelAttribute BoardVo boardVo) {
+		
+		return "board/read";
+	}
+
 }

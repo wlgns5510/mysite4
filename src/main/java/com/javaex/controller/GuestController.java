@@ -60,7 +60,7 @@ public class GuestController {
 	}
 
 	// 삭제
-	@RequestMapping(value = "k/delete", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/delete", method = { RequestMethod.GET, RequestMethod.POST })
 	public String delete(@RequestParam("no") int no, @RequestParam("password") String password) {
 		System.out.println("GuestController >> delete()");
 

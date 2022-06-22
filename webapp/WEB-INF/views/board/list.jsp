@@ -70,7 +70,7 @@
 								<c:forEach items="${gList}" var="BoardVo">
 									<tr>
 										<td>${BoardVo.no}</td>
-										<td class="text-left"><a href="/mysite4/board/read&no=${BoardVo.no }">${BoardVo.title}</a></td>
+										<td class="text-left"><a href="/mysite4/board/read">${BoardVo.title}</a></td>
 										<td>${BoardVo.name }</td>
 										<td>${BoardVo.hit }</td>
 										<td>${BoardVo.regDate }</td>

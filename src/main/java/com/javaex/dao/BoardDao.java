@@ -33,26 +33,6 @@ public class BoardDao {
 		return count;
 	}
 
-	/*
-	 * // 수정 public int personUpdate(PersonVo personVo) {
-	 * System.out.println("PhoneDao>>personInsert");
-	 * 
-	 * int count = sqlSession.update("phonebook.personUpdate", personVo);
-	 * 
-	 * return count; }
-	 * 
-	 * // 삭제 public int personDelete(int personId) {
-	 * System.out.println("PhoneDao>>personInsert");
-	 * 
-	 * int count = sqlSession.delete("phonebook.personDelete", personId); return
-	 * count; }
-	 * 
-	 * // 한사람 가져오기 public PersonVo getPerson(int personId) {
-	 * System.out.println("PhoneDao>>getPerson");
-	 * 
-	 * return sqlSession.selectOne("phonebook.getPerson", personId);
-	 * 
-	 * }
-	 */
+	
 
 }

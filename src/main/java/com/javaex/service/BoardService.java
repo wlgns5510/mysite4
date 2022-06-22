@@ -41,21 +41,6 @@ public class BoardService {
 	  
 	 
 	 
-	 /* // 전화번호 삭제 public int personDelete(int no) {
-	 * 
-	 * int count = phoneDao.personDelete(no); return count; }
-	 * 
-	 * // 전화번호 수정폼(정보가져오기) public PersonVo getPerson(int no) {
-	 * 
-	 * PersonVo personVo = phoneDao.getPerson(no);
-	 * 
-	 * return personVo; }
-	 * 
-	 * // 전화번호 수정 public int personUpdate(PersonVo personVo) {
-	 * 
-	 * int count = phoneDao.personUpdate(personVo);
-	 * 
-	 * return count; }
-	 */
+	 
 
 }
