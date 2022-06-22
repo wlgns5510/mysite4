@@ -33,6 +33,30 @@ public class BoardDao {
 		return count;
 	}
 
+	//삭제
+	public int delete(int no) {
+		System.out.println("BoardDao>>BoardDelete");
+		
+		int count = sqlSession.delete("board.delete", no);
+		
+		return count;
+	}
 	
+	//읽기
+	public BoardVo read(int no){
+		System.out.println("BoardDao>>BoardRead");
+				
+		return sqlSession.selectOne("board.read", no);
+	}
+	
+	//수정
+	public int modify(BoardVo boardVo) {
+		System.out.println("BoardDao>>BoardUpdate");
+		
+		int count = sqlSession.update("board.modify", boardVo);
+		return count;
+		
+		
+	}
 
 }

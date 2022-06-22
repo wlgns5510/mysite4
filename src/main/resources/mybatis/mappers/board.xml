@@ -22,6 +22,25 @@
 		]]>
 	</select>
 
+	<!-- 게시판 일기 -->
+	<select id="read" resultType="BoardVo" parameterType="int">
+		<![CDATA[
+			
+			select br.no,
+			       br.title, 
+				   br.content, 
+				   br.hit, 
+				   to_char(br.reg_date, 'YYYY-MM-DD HH:MI') regDate, 
+				   us.name,
+				   br.user_no userNo
+			from board br, users us 
+			where br.user_no = us.no
+			and br.no = #{no} 
+			order by no desc
+			
+		]]>
+	</select>
+
 	<!-- 게시판 저장 -->
 	<insert id="insert" parameterType="BoardVo">
 		<![CDATA[ 
@@ -31,6 +50,28 @@
 		
 		]]>
 	</insert>
+
+	<!-- 게시판 삭제 -->
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+			
+			delete from board
+			where no= #{no}
+			
+		]]>
+	</delete>
+
+	<!-- 게시판 수정 -->
+	<update id="modify" parameterType="BoardVo">
+		<![CDATA[
+		
+			update board
+			set title = #{title},
+				content = #{content}
+			where no = #{no}
+				
+		]]>
+	</update>
 
 
 

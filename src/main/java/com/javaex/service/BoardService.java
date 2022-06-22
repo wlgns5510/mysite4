@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.BoardDao;
-import com.javaex.dao.UserDao;
 import com.javaex.vo.BoardVo;
-import com.javaex.vo.UserVo;
 
 @Service
 public class BoardService {
@@ -39,7 +37,28 @@ public class BoardService {
 	    return count; 
     }
 	  
-	 
+	//게시판 삭제
+    public int delete(int no) {
+    	
+    	int count = boardDao.delete(no);
+    	
+    	return count;
+    }
+    
+    //게시판 읽기
+    public BoardVo read(int no) {
+    	
+    	
+    	return boardDao.read(no);
+    }
+    
+    //게시판 수정
+    public int modify(BoardVo boardVo) {
+    	
+    	int count = boardDao.modify(boardVo);
+    	
+    	return count;
+    }
 	 
 	 
 

@@ -70,13 +70,13 @@
 								<c:forEach items="${gList}" var="BoardVo">
 									<tr>
 										<td>${BoardVo.no}</td>
-										<td class="text-left"><a href="/mysite4/board/read">${BoardVo.title}</a></td>
+										<td class="text-left"><a href="/mysite4/board/read/${BoardVo.no }">${BoardVo.title}</a></td>
 										<td>${BoardVo.name }</td>
 										<td>${BoardVo.hit }</td>
 										<td>${BoardVo.regDate }</td>
 										<td>
 											<c:if test="${authUser.no == BoardVo.userNo }">
-												<a href="/mysite4/board/delete&no=${BoardVo.no }">[삭제]</a>
+												<a href="${pageContext.request.contextPath}/board/delete/${BoardVo.no }">[삭제]</a>												
 											</c:if>
 										</td>
 									</tr>
