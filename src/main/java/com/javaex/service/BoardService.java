@@ -20,10 +20,10 @@ public class BoardService {
 
 	// 메소드 일반
 
-	// 전화번호 리스트
-	public List<BoardVo> getBoardList() {
+	// 게시판 리스트+검색
+	public List<BoardVo> getBoardList(String keyword) {
 		// 코드작성
-		List<BoardVo> bList = boardDao.getBoardList();
+		List<BoardVo> bList = boardDao.getBoardList(keyword);
 
 		return bList;
 	}
@@ -58,8 +58,6 @@ public class BoardService {
     	int count = boardDao.modify(boardVo);
     	
     	return count;
-    }
-	 
-	 
-
+    }   
+ 
 }

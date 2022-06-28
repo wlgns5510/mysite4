@@ -22,7 +22,6 @@ public class GuestbookDao {
 		System.out.println("guestbookDao >> getList");
 
 		List<GuestbookVo> guestList = sqlSession.selectList("guestbook.selectList");
-		System.out.println(guestList);
 
 		return guestList;
 	}
@@ -41,5 +40,22 @@ public class GuestbookDao {
 
 		int count = sqlSession.delete("guestbook.guestDelete", guestbookVo);
 		return count;
+	}
+	
+	//방명록 등록(ajax)
+	public int insertGuest(GuestbookVo guestbookVo) {
+		System.out.println("GuestbookDao>>insertGuest");
+		
+		int count = sqlSession.insert("guestbook.insertSelectKey", guestbookVo);
+		return count;
+	}
+	
+	//방명록 저장후 등록한 데이터 가져오기
+	public GuestbookVo getGuest(int no) {
+		System.out.println("GuestbookDao>>getGuest");
+		
+		GuestbookVo gVo = sqlSession.selectOne("guestbook.getGuest", no);
+						
+		return gVo;
 	}
 }

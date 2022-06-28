@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
-import com.javaex.service.GuestService;
 import com.javaex.vo.BoardVo;
 import com.javaex.vo.UserVo;
 
@@ -32,16 +31,15 @@ public class BoardController {
 
 	// 메소드 일반
 
-	// 게시판 리스트
+	// 게시판 리스트+검색
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(Model model) {
+	public String list(Model model, 
+					   @RequestParam(value="keyword", required=false, defaultValue="") String keyword) {
 		System.out.println("BoardController >> list()");
 
-		// Service를 통해서 gList(주소)를 가져온다
-		List<BoardVo> bList = boardService.getBoardList();
+		List<BoardVo> bList = boardService.getBoardList(keyword);
 		System.out.println(bList);
 
-		// ds 데이터보내기 --> request attribute에 넣는다
 		model.addAttribute("gList", bList);
 
 		return "board/list";
@@ -118,8 +116,5 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
-		
 	
-	
-
 }

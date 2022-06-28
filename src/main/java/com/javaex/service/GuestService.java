@@ -38,4 +38,17 @@ public class GuestService {
 
 		return count;
 	}
+	
+	//방명록 저장(ajax)
+	public GuestbookVo addGuest(GuestbookVo guestbookVo) {
+		
+		int count = guestbookDao.insertGuest(guestbookVo);
+		
+		int no =guestbookVo.getNo();
+		
+		//방금저장한 1개의 데이터를 가져온다.		
+		GuestbookVo gVo = guestbookDao.getGuest(no);
+		
+		return gVo;
+	}
 }

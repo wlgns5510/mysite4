@@ -14,11 +14,11 @@ public class BoardDao {
 	@Autowired
 	private SqlSession sqlSession; // 미리 여러개를 연결해놈
 
-	// 리스트
-	public List<BoardVo> getBoardList() {
+	// 리스트+검색
+	public List<BoardVo> getBoardList(String keyword) {
 		System.out.println("BoardDao>>getBoardList");
 
-		List<BoardVo> bList = sqlSession.selectList("board.selectList");
+		List<BoardVo> bList = sqlSession.selectList("board.selectList", keyword);
 		System.out.println(bList);
 
 		return bList;
@@ -55,8 +55,7 @@ public class BoardDao {
 		
 		int count = sqlSession.update("board.modify", boardVo);
 		return count;
-		
-		
+			
 	}
-
+	
 }
