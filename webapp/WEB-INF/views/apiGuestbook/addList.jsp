@@ -13,10 +13,16 @@
 	rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/guestbook.css"
 	rel="stylesheet" type="text/css">
+<link
+	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
+	rel="stylesheet" type="text/css">
 
 <!-- js -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
+
 
 
 </head>
@@ -54,7 +60,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<%-- <form action="${pageContext.request.contextPath }/api/guestbook/add" method="get"> --%>
+
 					<table id="guestAdd">
 						<colgroup>
 							<col style="width: 70px;">
@@ -83,9 +89,8 @@
 					</table>
 					<!-- //guestWrite -->
 
-					</form>
-					<!-- gusetRead -->
 
+					<!-- gusetRead -->
 					<div id="listArea"></div>
 					<!-- //guestRead -->
 
@@ -102,6 +107,39 @@
 	</div>
 	<!-- //wrap -->
 
+	<!-- 삭제모달창 -->
+	<div id="delModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">비밀번호를 입력하세요.</h4>
+				</div>
+				<div class="modal-body">
+					비밀번호<input type="text" name="password" value=""> <br>
+					<input type="text" name="no" value="">
+
+
+
+
+
+
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+					<button id="btnModalDel" type="button" class="btn btn-danger">삭제</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 </body>
 <script type="text/javascript">
 <!-- 준비가 끝나면 -->
@@ -150,8 +188,79 @@
 				console.error(status + " : " + error);
 			}
 		});
+	});	
+	
+	/* 삭제버튼을 눌렀을때 */
+	$("#listArea").on("click", ".btnDel", function(){
+		console.log("삭제버튼");
+		var $this = $(this);
+		
+		var no = $this.data("no");
+	
+		//모달창에 no 값 입력
+		$('#delModal [name="password"]').val("");
+		$('[name="no"]').val(no);
+		
+		//모달창 띄우기
+		$("#delModal").modal("show");
 	});
+	
+	/* 모달창의 삭제버튼 눌렀을때 */
+	$("#btnModalDel").on("click", function(){
+		console.log("모달창삭제버튼");
+		
+		//데이터 모으기
+		var password = $("#delModal [name='password']").val();
+		var no = $('[name="no"]').val();
+		
+		//Vo로 묶기
+			//방법1
+			var guestbookVo = {
+					password: password,
+					no: no
+			};
+			console.log(guestbookVo);
+			
+			/* 방법2
+			var guestbookVo = {};
+			guestbookVo.password = password;
+			guestbookVo.no = no; */
 
+		
+		//서버로 데이터 전송
+		$.ajax({
+
+			url : "${pageContext.request.contextPath }/api/guestbook/remove",
+			type : "post",
+			//contentType : "application/json",
+			data : guestbookVo,
+			
+			dataType : "json",
+			success : function(result){
+						console.log(result);
+						
+						if(result == "succeess"){
+							$("#t" + no).remove();			//지우기
+							$("#delModal").modal("hide");	//모달창 닫기
+						}
+						else{
+							alert("비밀번호를 확인하세요");
+						}
+						
+
+			 },
+			error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+			}
+		});
+
+		
+	});
+	
+	
+	
+	
+	
 	/* 리스트 요청 */
 	function fetchList() {
 		$.ajax({
@@ -184,7 +293,7 @@
 		console.log("render()");
 
 		var str = '';
-		str += '<table class="guestRead">';
+		str += '<table id="t' + guestbookVo.no + '" class="guestRead">';
 		str += '	<colgroup>';
 		str += '		<col style="width: 10%;">';
 		str += '		<col style="width: 40%;">';
@@ -195,7 +304,7 @@
 		str += '		<td>' + guestbookVo.no + '</td>';
 		str += '		<td>' + guestbookVo.name + '</td>';
 		str += '		<td>' + guestbookVo.regDate + '</td>';
-		str += '		<td><a href="">[삭제]</a></td>';
+		str += '		<td><button class="btnDel" type="button" data-no="' +guestbookVo.no+ '">삭제</button></td>';
 		str += '	</tr>';
 		str += '	<tr>';
 		str += '		<td colspan=4 class="text-left">' + guestbookVo.content
@@ -203,13 +312,13 @@
 		str += '	</tr>';
 		str += '</table>';
 
-		if(opt == "down"){
-			$("#listArea").append(str);	
-		
-		}else if(opt == "up"){
+		if (opt == "down") {
+			$("#listArea").append(str);
+
+		} else if (opt == "up") {
 			$("#listArea").prepend(str);
-		
-		}else {
+
+		} else {
 			console.log("opt오류");
 		}
 	}
