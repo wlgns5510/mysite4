@@ -6,13 +6,17 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javaex.dao.FileDao;
 import com.javaex.vo.FileVo;
 
 @Service
 public class FlieService {
+	@Autowired
+	private FileDao fileDao;
 
 	//파일저장, 파일 정보(DB저장) 추출 저장
 	public String save(MultipartFile file) {
@@ -36,10 +40,12 @@ public class FlieService {
 		//파일사이즈
 		long fileSize = file.getSize();
 		
+		
 		FileVo fileVo = new FileVo(orgName, saveName, filePath, fileSize);
 		System.out.println(fileVo);
 		
 		//DB에 저장
+		fileDao.save(fileVo);
 		
 		//HD에 저장
 		try {
