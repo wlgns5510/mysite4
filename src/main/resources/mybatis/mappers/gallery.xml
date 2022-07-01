@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gallery">
+
+	<!-- 화면 리스트 -->
+	<select id="gList" resultType="GalleryVo">
+		<![CDATA[
+		
+			select g.no, 
+				   u.no userNo, 
+				   g.content, 
+				   g.filePath, 
+				   g.orgName, 
+				   g.saveName, 
+				   fileSize, 
+				   u.id, 
+				   u.password, 
+				   u.name 
+			from gallery g, users u 
+			where g.user_no = u.no
+				
+		]]>
+	</select>
+
+
+
+
+</mapper>
