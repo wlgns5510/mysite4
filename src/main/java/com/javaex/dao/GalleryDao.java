@@ -22,4 +22,13 @@ public class GalleryDao {
 		
 		return galleryList;
 	}
+	
+	//파일저장하기
+	public int save(GalleryVo galleryVo) {
+		System.out.println("GalleryDao>save");
+		
+		int count = sqlSession.insert("gallery.save", galleryVo);
+		
+		return count;
+	}
 }

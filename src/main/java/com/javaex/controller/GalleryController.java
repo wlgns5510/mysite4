@@ -33,18 +33,14 @@ public class GalleryController {
 	
 	//사진 등록
 	@RequestMapping(value="/gallery/upload", method = {RequestMethod.GET, RequestMethod.POST})
-	public String upload(@RequestParam("file") MultipartFile file, @RequestParam("content") String content, Model model) {
+	public String upload(@RequestParam("file") MultipartFile file, @RequestParam("content") String content) {
 		System.out.println("GalleryController>upload");
 		System.out.println(file.getOriginalFilename());
 		
 		
-		String saveName = GalleryService.save(file);
+		galleryService.save(file, content);
 		
-		GalleryVo galleryVo = new GalleryVo();
-		galleryVo.setContent(content);
-		galleryVo.setSaveName(saveName);
 		
-		model.addAttribute("galleryVo", galleryVo);
 		
 		return "gallery/list";
 	}

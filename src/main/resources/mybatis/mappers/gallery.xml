@@ -23,6 +23,16 @@
 				
 		]]>
 	</select>
+	
+	<!-- 파일저장 -->
+	<insert id="save" parameterType="GalleryVo">
+		<![CDATA[
+			
+			insert into gallery 
+			values(seq_gNo.nextval, #{userNo}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{fileSize})
+			
+		]]>
+	</insert>
 
 
 
