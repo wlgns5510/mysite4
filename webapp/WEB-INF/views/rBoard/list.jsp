@@ -49,7 +49,7 @@
 	
 				<div id="board">
 					<div id="list">
-						<form action="/mysite4/board/list" method="get">
+						<form action="/mysite4/rBoard/list" method="get">
 							<div class="form-group text-right">
 								<input type="text" name="keyword" value="">
 								<button type="submit" id=btn_search>검색</button>
@@ -67,16 +67,16 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${gList}" var="BoardVo">
+								<c:forEach items="${gList}" var="RBoardVo">
 									<tr>
-										<td>${BoardVo.no}</td>
-										<td class="text-left"><a href="/mysite4/board/read/${BoardVo.no }">${BoardVo.title}</a></td>
-										<td>${BoardVo.name }</td>
-										<td>${BoardVo.hit }</td>
-										<td>${BoardVo.regDate }</td>
+										<td>${RBoardVo.no}</td>
+										<td class="text-left"><a href="/mysite4/board/read/${RBoardVo.no }">${RBoardVo.title}</a></td>
+										<td>${RBoardVo.name }</td>
+										<td>${RBoardVo.hit }</td>
+										<td>${RBoardVo.regDate }</td>
 										<td>
-											<c:if test="${authUser.no == BoardVo.userNo }">
-												<a href="${pageContext.request.contextPath}/board/delete/${BoardVo.no }">[삭제]</a>												
+											<c:if test="${authUser.no == RBoardVo.userNo }">
+												<a href="${pageContext.request.contextPath}/board/delete/${RBoardVo.no }">[삭제]</a>												
 											</c:if>
 										</td>
 									</tr>

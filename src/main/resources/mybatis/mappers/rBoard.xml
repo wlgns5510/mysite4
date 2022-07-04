@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rBoard">
+
+	<!-- 게시판 검색+리스트 -->
+	<select id="selectbList" parameterType="String" resultType="RBoardVo">
+			select br.no, 
+			       br.title, 
+				   br.content, 
+				   br.hit, 
+				   to_char(br.reg_date, 'YYYY-MM-DD HH:MI') regDate, 
+				   us.name, 
+				   br.user_no userNo, 
+                   br.group_no groupNo, 
+                   br.order_no orderNo, 
+                   br.depth 
+			from rboard br, users us 
+			where br.user_no = us.no 
+		<if test= "value !=null">
+			and br.title like '%${value}%' 
+		</if>
+			order by br.no desc 
+	</select>
+
+
+
+
+
+</mapper>
