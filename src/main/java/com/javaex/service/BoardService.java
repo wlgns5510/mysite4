@@ -27,6 +27,23 @@ public class BoardService {
 
 		return bList;
 	}
+	
+	//리스트(일반)
+	public List<BoardVo> getBoardList2(int crtPage){
+		
+		//페이지당 글갯수(10개)
+		int listCnt = 10;
+		
+		//시작 글번호
+		int startRnum = (crtPage-1)*listCnt + 1;
+		
+		//끝 글번호
+		int endRnum = (startRnum + listCnt) - 1;
+
+		List<BoardVo> boardList = boardDao.getBoardList2(startRnum, endRnum);
+		
+		return boardList;
+	}
 
 	
     // 게시판 등록
