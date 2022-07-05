@@ -41,6 +41,16 @@ public class BoardDao {
 		return boardList;
 
 	}
+	
+	//전체글 갯수
+	public int selectTotalCnt() {
+		System.out.println("BoardDao>>selectTotalCnt");
+		
+		int totalCnt = sqlSession.selectOne("board.selectTotalCnt");
+		System.out.println(totalCnt);
+
+		return totalCnt;
+	}
 
 	// 등록
 	public int insert(BoardVo boardVo) {

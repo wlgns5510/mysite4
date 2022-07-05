@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
-import com.javaex.vo.UserVo;
 
 @Controller
 @RequestMapping(value = "/board")
@@ -41,11 +41,14 @@ public class BoardController {
 
 	// 리스트(일반)
 	@RequestMapping(value = "/list2", method = { RequestMethod.GET, RequestMethod.POST })
-		public String list2(Model model, @RequestParam("crtPage") int crtPage) {
+		public String list2(Model model, 
+							@RequestParam(value="crtPage", required = false, defaultValue = "1") int crtPage) {
 		System.out.println("BoardController >> list2()");
 		
-		List<BoardVo> boardList = boardService.getBoardList2(crtPage);
-		model.addAttribute("gList", boardList);
+		Map<String,Object> pMap = boardService.getBoardList2(crtPage);
+		model.addAttribute("pMap", pMap);
+		
+		System.out.println("controller --> " + pMap);
 
 		
 		return "board/list2";
