@@ -34,7 +34,7 @@ public class UserController {
 	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("UserController >> login()");
 		
-		UserVo authUser = userService.iogin(userVo);
+		UserVo authUser = userService.login(userVo);
 			
 		//세션에 저장
 		if(authUser != null) {	//로그인성공
@@ -55,7 +55,7 @@ public class UserController {
 		
 		session.removeAttribute("authUser");
 		session.invalidate();
-		
+
 		return "redirect:/main";
 	}
 	

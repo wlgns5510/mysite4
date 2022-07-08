@@ -26,7 +26,7 @@ public class UserService {
 	}
 	
 	//로그인
-	public UserVo iogin(UserVo userVo) {
+	public UserVo login(UserVo userVo) {
 		System.out.println("UserService.iogin()");
 		//Dao를 통해 DB에 자료저장
 		UserVo authUser = userDao.getUser(userVo);
