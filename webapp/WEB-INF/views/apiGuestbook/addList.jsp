@@ -9,7 +9,8 @@
 <title>Insert title here</title>
 
 <!-- css -->
-<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
+<link
+	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
 	rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css"
 	rel="stylesheet" type="text/css">
@@ -105,7 +106,6 @@
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- //footer -->
 	</div>
-	<!-- //wrap -->
 
 	<!-- 삭제모달창 -->
 	<div id="delModal" class="modal fade">
@@ -121,14 +121,6 @@
 				<div class="modal-body">
 					비밀번호<input type="text" name="password" value=""> <br>
 					<input type="text" name="no" value="">
-
-
-
-
-
-
-
-
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -141,6 +133,7 @@
 	</div>
 	<!-- /.modal -->
 </body>
+
 <script type="text/javascript">
 <!-- 준비가 끝나면 -->
 	$(document).ready(function() {
@@ -149,7 +142,7 @@
 		fetchList();
 
 	});
-	
+
 	/* 저장버튼을 클릭했을때 
 	$("#btnSubmit").on("click", function() {
 		console.log("저장버튼 클릭");
@@ -189,9 +182,8 @@
 			}
 		});
 	});
-	*/
-	
-	
+	 */
+
 	/* 저장버튼을 눌렀을때(json) */
 	$("#btnSubmit").on("click", function() {
 		console.log("저장버튼 클릭");
@@ -206,13 +198,13 @@
 			name : name,
 			password : password,
 			content : content
-		};		
+		};
 
 		$.ajax({
 			url : "${pageContext.request.contextPath}/api/guestbook/add2",
 			type : "post",
-			contentType: "application/json",
-			data :JSON.stringify(guestVo),		//js객체를 JSON문자열로 변환
+			contentType : "application/json",
+			data : JSON.stringify(guestVo), //js객체를 JSON문자열로 변환
 			dataType : "json",
 			success : function(gVo) {
 				/* 1개데이터 리스트 추가(그리기)하기 */
@@ -230,44 +222,43 @@
 		});
 
 	});
-	
+
 	/* 삭제버튼을 눌렀을때 */
-	$("#listArea").on("click", ".btnDel", function(){
+	$("#listArea").on("click", ".btnDel", function() {
 		console.log("삭제버튼");
 		var $this = $(this);
-		
+
 		var no = $this.data("no");
-	
+
 		//모달창에 no 값 입력
 		$('#delModal [name="password"]').val("");
 		$('[name="no"]').val(no);
-		
+
 		//모달창 띄우기
 		$("#delModal").modal("show");
 	});
-	
+
 	/* 모달창의 삭제버튼 눌렀을때 */
-	$("#btnModalDel").on("click", function(){
+	$("#btnModalDel").on("click", function() {
 		console.log("모달창삭제버튼");
-		
+
 		//데이터 모으기
 		var password = $("#delModal [name='password']").val();
 		var no = $('[name="no"]').val();
-		
-		//Vo로 묶기
-			//방법1
-			var guestbookVo = {
-					password: password,
-					no: no
-			};
-			console.log(guestbookVo);
-			
-			/* 방법2
-			var guestbookVo = {};
-			guestbookVo.password = password;
-			guestbookVo.no = no; */
 
-		
+		//Vo로 묶기
+		//방법1
+		var guestbookVo = {
+			password : password,
+			no : no
+		};
+		console.log(guestbookVo);
+
+		/* 방법2
+		var guestbookVo = {};
+		guestbookVo.password = password;
+		guestbookVo.no = no; */
+
 		//서버로 데이터 전송
 		$.ajax({
 
@@ -275,33 +266,26 @@
 			type : "post",
 			//contentType : "application/json",
 			data : guestbookVo,
-			
-			dataType : "json",
-			success : function(result){
-						console.log(result);
-						
-						if(result == "succeess"){
-							$("#t" + no).remove();			//지우기
-							$("#delModal").modal("hide");	//모달창 닫기
-						}
-						else{
-							alert("비밀번호를 확인하세요");
-						}
-						
 
-			 },
+			dataType : "json",
+			success : function(result) {
+				console.log(result);
+
+				if (result == "succeess") {
+					$("#t" + no).remove(); //지우기
+					$("#delModal").modal("hide"); //모달창 닫기
+				} else {
+					alert("비밀번호를 확인하세요");
+				}
+
+			},
 			error : function(XHR, status, error) {
-						console.error(status + " : " + error);
+				console.error(status + " : " + error);
 			}
 		});
 
-		
 	});
-	
-	
-	
-	
-	
+
 	/* 리스트 요청 */
 	function fetchList() {
 		$.ajax({
