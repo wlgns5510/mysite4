@@ -16,7 +16,7 @@ public class FileController {
 	@Autowired
 	private FlieService fileService;
 	
-	//화면표시
+	//화면표시/////////////////////////////
 	@RequestMapping(value="/fileupload/form", method = {RequestMethod.GET, RequestMethod.POST})
 	public String form() {
 		System.out.println("FileController>form()");
@@ -24,7 +24,7 @@ public class FileController {
 		return "fileupload/form";
 	}
 	
-	//파일 업로드
+	//파일 업로드//////////////////////////
 	@RequestMapping(value="/fileupload/upload", method = {RequestMethod.GET, RequestMethod.POST})
 	public String upload(@RequestParam("file") MultipartFile file, Model model) {
 		System.out.println("FileController>upload()");	
