@@ -84,6 +84,7 @@ public class BoardDao {
 		int count = sqlSession.update("board.modify", boardVo);
 		return count;
 			
+		
 	}
 	
 	
